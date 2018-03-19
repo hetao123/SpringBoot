@@ -1,38 +1,29 @@
 package com.example.demo.service;
-
 import com.example.demo.Account;
-import com.example.demo.dao.IAccountDAO;
+import com.example.demo.dao.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AccountService implements IAccountService {
+public class AccountService  {
     @Autowired
-    IAccountDAO accountDAO;
-    @Override
-    public int add(Account account) {
-        return accountDAO.add(account);
-    }
+    private AccountMapper accountMapper;
 
-    @Override
-    public int update(Account account) {
-        return accountDAO.update(account);
+    public int add(String name, double money) {
+        return accountMapper.add(name, money);
     }
-
-    @Override
+    public int update(String name, double money, int id) {
+        return accountMapper.update(name, money, id);
+    }
     public int delete(int id) {
-        return accountDAO.delete(id);
+        return accountMapper.delete(id);
     }
-
-    @Override
-    public Account findAccountById(int id) {
-        return accountDAO.findAccountById(id);
+    public Account findAccount(int id) {
+        return accountMapper.findAccount(id);
     }
-
-    @Override
     public List<Account> findAccountList() {
-        return accountDAO.findAccountList();
+        return accountMapper.findAccountList();
     }
 }
