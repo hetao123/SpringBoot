@@ -25,7 +25,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public String updateAccount(@PathVariable("id") int id, @RequestParam(value = "name", required = true) String name,
+    public String updateAccount(@PathVariable("id") Integer id, @RequestParam(value = "name", required = true) String name,
                                 @RequestParam(value = "money", required = true) double money) {
         int t= accountService.update(name,money,id);
         if(t==1) {
@@ -48,10 +48,10 @@ public class AccountController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String postAccount(@RequestParam(value = "name") String name,
-                              @RequestParam(value = "money") double money) {
+    public String postAccount(@RequestParam(value = "name", required = false) Integer name,
+                              @RequestParam(value = "money", required = false) Integer money) {
 
-        int t= accountService.add(name,money);
+        int t= 1;//accountService.add(name,money);
         if(t==1) {
             return "success";
         }else {
